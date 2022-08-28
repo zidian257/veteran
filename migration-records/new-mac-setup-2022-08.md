@@ -35,6 +35,7 @@
 - ssh
   - ssh-keygen -t rsa -C "comment"
   - 去公司 GitLab 添加 cat `~/.rsa_pub` 的公钥
+  - 记得更新 Github 的 SSH Key
 - 仓库
   - 没啥特别的，一个一个地拉吧 
 
