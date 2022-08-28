@@ -37,3 +37,8 @@
   - 去公司 GitLab 添加 cat `~/.rsa_pub` 的公钥
 - 仓库
   - 没啥特别的，一个一个地拉吧 
+
+
+## reference
+
+[New MacBook Setup](https://sourabhbajaj.com/mac-setup/)
