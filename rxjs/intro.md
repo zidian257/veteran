@@ -213,4 +213,104 @@ subject.next(3);
 
 ## ReplaySubject
 
+ReplaySubject 记录了「Observable 的多次执行」，并且在「新的消费者发生订阅行为时，重放这些值」。
+
+
+```javascript
+import { ReplaySubject } from 'rxjs';
+const subject = new ReplaySubject(3); // buffer 3 values for new subscribers
+
+subject.subscribe({
+  next: (v) => console.log(`observerA: ${v}`),
+});
+
+subject.next(1);
+subject.next(2);
+subject.next(3);
+subject.next(4);
+
+subject.subscribe({
+  next: (v) => console.log(`observerB: ${v}`),
+});
+
+subject.next(5);
+
+// Logs:
+// observerA: 1
+// observerA: 2
+// observerA: 3
+// observerA: 4
+// observerB: 2
+// observerB: 3
+// observerB: 4
+// observerA: 5
+// observerB: 5
+```
+
+ReplaySubject 构造器的第二个参数， 传入 window：指定除了第一个参数指定的数量值以外，决定「emit 的值到底有多旧」
+
+```javacript
+import { ReplaySubject } from 'rxjs';
+const subject = new ReplaySubject(100, 500 /* windowTime */);
+
+subject.subscribe({
+  next: (v) => console.log(`observerA: ${v}`),
+});
+
+let i = 1;
+setInterval(() => subject.next(i++), 200);
+
+setTimeout(() => {
+  subject.subscribe({
+    next: (v) => console.log(`observerB: ${v}`),
+  });
+}, 1000);
+
+// Logs
+// 可以观察到，i = 5 时 Subject 有了新的消费者订阅
+// ReplaySubject 将 3 4 5 吐给 了消费者 ObserverB，而并不是 1 2 3 4 5
+// observerA: 1
+// observerA: 2
+// observerA: 3
+// observerA: 4
+// observerA: 5
+// observerB: 3
+// observerB: 4
+// observerB: 5
+// observerA: 6
+// observerB: 6
+// ...
+```
+
+## AsyncSubject
+
+将 Observable 完成前的最后一个值吐出来。 类似 `last()` 操作符。
+
+```javascript
+import { AsyncSubject } from 'rxjs';
+const subject = new AsyncSubject();
+
+subject.subscribe({
+  next: (v) => console.log(`observerA: ${v}`),
+});
+
+subject.next(1);
+subject.next(2);
+subject.next(3);
+subject.next(4);
+
+subject.subscribe({
+  next: (v) => console.log(`observerB: ${v}`),
+});
+
+subject.next(5);
+subject.complete();
+
+// Logs:
+// observerA: 5
+// observerB: 5
+```
+
+## VoidSubject
+
 
