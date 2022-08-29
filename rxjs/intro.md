@@ -1,3 +1,5 @@
+[TOC]
+
 # Observables
 
 lazy push collection of multiple values.
@@ -313,4 +315,63 @@ subject.complete();
 
 ## VoidSubject
 
+这个没啥可说的
 
+# Scheduler
+
+Scheduler 决定，Observable 以什么样的执行时序（execution context）将值的派发序列、派发给消费者。
+
+- A Scheduler is a data structure.
+- A Scheduler is an execution context. 
+- A Scheduler has a (virtual) clock.
+
+[一个线上的例子](https://stackblitz.com/run?devtoolsheight=50)
+
+## Scheduler Types
+
+- null
+- queueScheduler
+- asapScheduler
+- asyncScheduler
+- animationFrameScheduler
+
+see https://rxjs.dev/guide/scheduler#scheduler-types
+
+## 使用 Scheduler
+
+RxJS 所有处理并行的 operator 都可以选择性地使用 scheduler。只是默认使用 least concurrency 的 scheduler。
+
+也就意味着，有一些 operator 可以指定 scheduler。
+
+e.g. `from([1, 2, 3], asyncScheduler)`
+
+*Static Creation Operator 一般都可以填入 scheduler 作为第二个参数*
+
+- bindCallback
+- bindNodeCallback
+- combineLatest
+- concat
+- empty
+- from
+- fromPromise
+- interval
+- merge
+- of
+- range
+- throw
+- timer
+
+- subscribeOn
+  - 决定 subscribe() 调用发生的时机
+- observeOn
+  - 决定消费者接收通知的调用发生的时机
+
+
+Time-related operators like bufferTime, debounceTime, delay, auditTime, sampleTime, throttleTime, timeInterval, timeout, timeoutWith, windowTime all take a Scheduler as the last argument, and otherwise operate by default on the asyncScheduler.
+
+
+Other instance operators that take a Scheduler as argument: cache, combineLatest, concat, expand, merge, publishReplay, startWith.
+
+# 引用
+
+`import {of, map} from 'rxjs'`
