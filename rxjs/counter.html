@@ -2,17 +2,20 @@
 <body>
 
 <h1> Counter </h1>
-<div id=count />
-<button id=button> click to increase </button>
+<div id="count">0</div>
+<button id="button"> click to increase </button>
 
-<script src=https://unpkg.com/rxjs@7.5.6/dist/bundles/rxjs.umd.min.js />
+<script src="https://unpkg.com/rxjs@7.5.6/dist/bundles/rxjs.umd.min.js" /></script>
 <script>
-	const {fromEvent, count} = rxjs
+	const {fromEvent, BehaviorSubject, scan} = rxjs
+	const $value = new BehaviorSubject(0);
+const $event = fromEvent(document.querySelector('#button'), 'click');
 
-	const $event = fromEvent(document.querySelector('#button'), 'click')
-	const $count = $event.pipe(count())
+$value.subscribe((x) => {
+  document.querySelector('#count').textContent = String(x);
+});
 
-	$count.subscribe(x => {document.querySelector('#count').textContent = x})
+$event.pipe(scan(ac => ac + 1, 0)).subscribe($value)
 </script>
 
 </body>
