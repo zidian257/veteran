@@ -1,0 +1,19 @@
+<html>
+<body>
+
+<h1> Counter </h1>
+<div id=count />
+<button id=button> click to increase </button>
+
+<script src=https://unpkg.com/rxjs@7.5.6/dist/bundles/rxjs.umd.min.js />
+<script>
+	const {fromEvent, count} = rxjs
+
+	const $event = fromEvent(document.querySelector('#button'), 'click')
+	const $count = $event.pipe(count())
+
+	$count.subscribe(x => {document.querySelector('#count').textContent = x})
+</script>
+
+</body>
+</html>
