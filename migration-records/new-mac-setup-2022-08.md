@@ -13,12 +13,12 @@
 - 金山文档
 - SetApp
   - CleanShotX 截图必备
-  - 
 - Telegram 摸鱼必备
-
 ## 编码
 
 - VSCode
+  - 开启 synchronization
+  - 把父级目录全部加入 workspace（TODO 感觉这里可以继续总结一下）
 - WebStorm
 - homebrew[地址](https://brew.sh/)
   - brew install tree
@@ -37,9 +37,14 @@
   - 去公司 GitLab 添加 cat `~/.rsa_pub` 的公钥
   - 记得更新 Github 的 SSH Key
 - 仓库
-  - 没啥特别的，一个一个地拉吧 
+  - 没啥特别的，一个一个地拉吧
 
+## Lifestyle 生活
 
+- [Adobe cloud 修图、摄影](https://creativecloud.adobe.com/apps/all/desktop?action=install&source=apps&productId=creative-cloud)
+- Iosevka[地址](https://github.com/be5invis/Iosevka)
+  - build fira version
+  - brew install ttfautohinting
 ## reference
 
 [New MacBook Setup](https://sourabhbajaj.com/mac-setup/)
