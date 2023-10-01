@@ -11,7 +11,7 @@
 - 飞连
 - MindNode（从 AppStore 直接安装
 - 金山文档
-- SetApp
+- SetApp[地址](https://setapp.com)
   - CleanShotX 截图必备
 - Telegram 摸鱼必备
 ## 编码
