@@ -13,6 +13,12 @@
 - SetApp[地址](https://setapp.com)
   - CleanShotX 截图必备
 - Telegram 摸鱼必备
+- 那啥以后,
+```
+  // You can use unset command to remove the environment variable.
+  unset http_proxy
+```
+取消 terminal 的代理
 ## 编码
 - VSCode
   - 开启 synchronization
